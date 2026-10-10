@@ -1,0 +1,9 @@
+# Only the two entry points may be called from the web; lib/ holds code, never URLs.
+Options -Indexes
+
+<FilesMatch "\.(php|sql|md|json|log)$">
+  Require all denied
+</FilesMatch>
+<FilesMatch "^(index|install)\.php$">
+  Require all granted
+</FilesMatch>

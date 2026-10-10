@@ -1,0 +1,25 @@
+# outreach.reklamx.se — static app + PHP API in api/
+Options -Indexes
+DirectoryIndex index.html
+
+# Always HTTPS (login cookies and lead data must never travel unencrypted).
+RewriteEngine On
+RewriteCond %{HTTPS} !=on
+RewriteCond %{HTTP:X-Forwarded-Proto} !=https
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+<IfModule mod_headers.c>
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set X-Frame-Options "DENY"
+  Header always set Referrer-Policy "same-origin"
+  Header always set Strict-Transport-Security "max-age=31536000"
+  # Internal tool: keep it out of search engines.
+  Header always set X-Robots-Tag "noindex, nofollow"
+</IfModule>
+
+# index.html must never be cached, or agents keep running an old version after an upload.
+<FilesMatch "^index\.html$">
+  <IfModule mod_headers.c>
+    Header set Cache-Control "no-cache"
+  </IfModule>
+</FilesMatch>

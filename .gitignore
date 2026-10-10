@@ -1,0 +1,9 @@
+node_modules
+dist
+outreach-upload.zip
+.DS_Store
+# Real lead data must never be committed (personal data / GDPR).
+*.csv
+*.xlsx
+# Never commit the server config (database + mailbox passwords).
+outreach-config.php
