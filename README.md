@@ -4,6 +4,8 @@ Call-center operating system for Reklamx' reseller outreach: an auto-queued dial
 
 Runs at **https://outreach.reklamx.se** on the reklamx.se cPanel account.
 
+**Prova demon:** https://diaabarri-84.github.io/Callcenterz/ — samma app i demoläge med 6 påhittade företag (inga riktiga leads, inget skickas). Data sparas bara i din webbläsare.
+
 **Stack:** Vite + React + TypeScript + Tailwind (static files) · PHP 8.1+ API · MySQL/MariaDB · cPanel mailbox (SMTP + IMAP). Nothing to install on the server.
 
 ## Vad systemet gör (kravlista)

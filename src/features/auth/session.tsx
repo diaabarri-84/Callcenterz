@@ -24,14 +24,16 @@ const DEMO_NAME_KEY = 'reklamx-cc-agent-name'
 type Probe = 'loading' | 'server' | 'demo' | 'not_installed' | 'offline'
 
 /**
- * Asks the PHP API who is logged in. Without a PHP server (npm run dev on your own computer)
- * the app falls back to demo mode with browser-only data. On the real domain it never does —
- * an unreachable server shows an error instead, so nobody works in a local copy by mistake.
+ * Asks the PHP API who is logged in. Without a PHP server (npm run dev on your own computer, or the
+ * public preview on GitHub Pages) the app falls back to demo mode with browser-only, fictional data.
+ * On the real domain it never does — an unreachable server shows an error instead, so nobody works
+ * in a local copy by mistake.
  */
 export function SessionProvider({ children }: { children: ReactNode }) {
   const [probe, setProbe] = useState<Probe>('loading')
   const [agent, setAgent] = useState<Agent | null>(null)
-  const local = import.meta.env.DEV || ['localhost', '127.0.0.1'].includes(location.hostname)
+  const local = import.meta.env.DEV || ['localhost', '127.0.0.1'].includes(location.hostname) ||
+    location.hostname.endsWith('.github.io')
 
   const check = useCallback(() => {
     setProbe('loading')
